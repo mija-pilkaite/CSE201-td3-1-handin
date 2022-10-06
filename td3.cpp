@@ -109,5 +109,29 @@ void merge_telemetry(double **telemetries,
                      double* &global_telemetry,
                      int &global_telemetry_current_size,
                      int &global_telemetry_max_size) {
-  // IMPLEMENT YOUR FUNCTION HERE
+  double one = 0;
+  double two = 0;
+  double three = 0;
+  for (int i=0; i<tot_telemetries; i++){
+      for (int t=0; t<telemetries_sizes[i]; t++){
+      global_telemetry = append_to_array(telemetries[i][t], global_telemetry, global_telemetry_current_size, global_telemetry_max_size);
+   }
+  }
+  std::cout<<"printing"<<std::endl;
+  for (int j=0; j<global_telemetry_current_size-3; j+=3){
+      for (int k=j+3; k<global_telemetry_current_size; k+=3){
+          if (global_telemetry[k]<global_telemetry[j]){
+              one = global_telemetry[j];
+              two = global_telemetry[j+1];
+              three = global_telemetry[j+2];
+              global_telemetry[j] = global_telemetry[k];
+              global_telemetry[j+1] = global_telemetry[k+1];
+              global_telemetry[j+2] = global_telemetry[k+2];
+              global_telemetry[k] = one;
+              global_telemetry[k+1] = two;
+              global_telemetry[k+2] = three;
+          }
+      }
+
+  }
 }
